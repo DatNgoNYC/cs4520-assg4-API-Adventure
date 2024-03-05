@@ -8,4 +8,9 @@ class LoginViewModel : ViewModel() {
     private var _loginSuccess = MutableLiveData<Boolean>()
     var loginSuccess: LiveData<Boolean> = _loginSuccess
 
+    fun login(username: String, password: String) {
+        if (username === "admin" && password === "admin") {
+            _loginSuccess.value = true
+        }
+    }
 }
