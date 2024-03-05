@@ -14,5 +14,6 @@
     </fragment>
 
     <fragment android:id="@+id/product_list_fragment"
-        android:name="com.cs4520.assignment4.product_list.ProductListFragment" />
+        android:name="com.cs4520.assignment4.product_list.ProductListFragment"
+        tools:layout=" "/>
 </navigation>
