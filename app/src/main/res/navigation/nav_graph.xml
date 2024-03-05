@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/login_fragment">
 
     <fragment android:id="@+id/login_fragment"
-        android:name="com.cs4520.assignment4.login.LoginFragment">
+        android:name="com.cs4520.assignment4.login.LoginFragment"
+        tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_login_fragment_to_product_list_fragment"
             app:destination="@id/product_list_fragment"/>
