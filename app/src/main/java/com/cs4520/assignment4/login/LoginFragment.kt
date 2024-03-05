@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
             if (loginSuccess) {
                 findNavController().navigate(R.id.action_login_fragment_to_product_list_fragment)
             } else {
-                Toast.makeText(context, "wrong username/password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "wrong username/password or the app just started", Toast.LENGTH_SHORT).show()
             }
         }
 
