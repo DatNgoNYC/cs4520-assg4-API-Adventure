@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
-    private var _loginSuccess = MutableLiveData<Boolean>()
+    private var _loginSuccess = MutableLiveData<Boolean>(false)
     var loginSuccess: LiveData<Boolean> = _loginSuccess
 
     fun login(username: String, password: String) {
-        if (username === "admin" && password === "admin") {
-            _loginSuccess.value = true
+        if (username == "admin" && password == "admin") {
+            _loginSuccess.value = true;
+        } else {
+            _loginSuccess.value = false;
         }
     }
 }

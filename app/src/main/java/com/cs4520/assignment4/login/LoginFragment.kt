@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,8 @@ class LoginFragment : Fragment() {
         viewModel.loginSuccess.observe(viewLifecycleOwner) { loginSuccess ->
             if (loginSuccess) {
                 findNavController().navigate(R.id.action_login_fragment_to_product_list_fragment)
+            } else {
+                Toast.makeText(context, "wrong username/password", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -41,6 +44,8 @@ class LoginFragment : Fragment() {
 
             binding.username.text.clear()
             binding.password.text.clear()
+
+
         }
     }
 
