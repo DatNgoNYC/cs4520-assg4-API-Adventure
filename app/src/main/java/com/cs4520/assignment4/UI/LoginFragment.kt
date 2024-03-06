@@ -1,4 +1,4 @@
-package com.cs4520.assignment4.login
+package com.cs4520.assignment4.UI
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cs4520.assignment4.R
+import com.cs4520.assignment4.ViewModels.LoginViewModel
 import com.cs4520.assignment4.databinding.LoginFragmentBinding
 
 class LoginFragment : Fragment() {

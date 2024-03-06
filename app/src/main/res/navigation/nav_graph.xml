@@ -6,7 +6,7 @@
     app:startDestination="@id/login_fragment">
 
     <fragment android:id="@+id/login_fragment"
-        android:name="com.cs4520.assignment4.login.LoginFragment"
+        android:name="com.cs4520.assignment4.UI.LoginFragment"
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_login_fragment_to_product_list_fragment"
@@ -14,6 +14,6 @@
     </fragment>
 
     <fragment android:id="@+id/product_list_fragment"
-        android:name="com.cs4520.assignment4.product_list.ProductListFragment"
+        android:name="com.cs4520.assignment4.UI.ProductListFragment"
         tools:layout=" "/>
 </navigation>

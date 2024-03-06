@@ -1,4 +1,4 @@
-package com.cs4520.assignment4.login
+package com.cs4520.assignment4.ViewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
