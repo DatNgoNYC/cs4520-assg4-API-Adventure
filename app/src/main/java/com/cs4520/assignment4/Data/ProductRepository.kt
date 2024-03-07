@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.cs4520.assignment4.Data.Entities.Product
 import com.cs4520.assignment4.Data.LocalDataSource.ProductDAO
+import com.cs4520.assignment4.Data.LocalDataSource.ProductDatabase
 import com.cs4520.assignment4.Data.Network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -15,16 +16,20 @@ import kotlinx.coroutines.withContext
 
 //
 class ProductRepository(
-    private val context: Context,
-    private val dao: ProductDAO,
-    private val productsApiService: RetrofitClient.ProductsApiService
+    private val context: Context
 ) {
+    private val dao: ProductDAO
+
+    init {
+        val database = ProductDatabase.getDatabase(context)
+        dao = database.productDao()
+    }
     suspend fun getAllProducts(): LiveData<List<Product>> = withContext(Dispatchers.IO) {
         if (isOnline(context)) {
             try {
                 val apiCalls = listOf(
-                    async { productsApiService.amazonApi.getProductListByPage(1) },
-                    async { productsApiService.amazonApi.getProductListByPage(2) }
+                    async { RetrofitClient.ProductsApiService.amazonApi.getProductListByPage(1) },
+                    async { RetrofitClient.ProductsApiService.amazonApi.getProductListByPage(2) }
                 )
                 val results = awaitAll(*apiCalls.toTypedArray()).mapNotNull { it.body() }.flatten()
 
