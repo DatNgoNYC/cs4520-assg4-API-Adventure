@@ -17,7 +17,7 @@ object RetrofitClient {
             .build()
     }
 
-    object ProductsApiClient {
+    object ProductsApiService {
         val apiService: ApiService by lazy {
             RetrofitClient.retrofit.create(ApiService::class.java)
         }
@@ -26,6 +26,6 @@ object RetrofitClient {
 
 interface ApiService {
     @GET("prod/?page={id}")
-    fun getProductListByPage(pageNumber: Int): Call<List<Product>>
+    suspend fun getProductListByPage(pageNumber: Int): Call<List<Product>>
 }
 
