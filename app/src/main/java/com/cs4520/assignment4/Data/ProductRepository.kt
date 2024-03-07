@@ -11,11 +11,12 @@ import kotlinx.coroutines.withContext
 
 //
 class ProductRepository(
+    private val context: Context,
     private val dao: ProductDAO,
     private val productsApiService: RetrofitClient.ProductsApiService
 ) {
     suspend fun getAllProducts(): List<Product> = withContext(Dispatchers.IO) {
-        if (isOnline()) {
+        if (isOnline(context)) {
             try {
                 val page_1_call =
                     productsApiService.amazonApi.getProductListByPage(1);
