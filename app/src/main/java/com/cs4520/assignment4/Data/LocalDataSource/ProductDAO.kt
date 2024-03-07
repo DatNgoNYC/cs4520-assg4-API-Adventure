@@ -10,8 +10,8 @@ import com.cs4520.assignment4.Data.Entities.Product
 @Dao
 interface ProductDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(product: List<Product>)
+    fun insertAll(product: List<Product>)
 
     @Query("Select * FROM products")
-    fun getAllProducts(): LiveData<List<Product>>
+    suspend fun getAllProducts(): LiveData<List<Product>>
 }
