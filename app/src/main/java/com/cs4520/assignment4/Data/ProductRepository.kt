@@ -3,6 +3,7 @@ package com.cs4520.assignment4.Data
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.cs4520.assignment4.Data.Entities.Product
 import com.cs4520.assignment4.Data.LocalDataSource.ProductDAO
@@ -30,6 +31,10 @@ class ProductRepository(
                 if (results.isNotEmpty()) {
                     dao.insertAll(results)
                 }
+
+                Log.d("ApiService", "the first page: ${results.get(0)}")
+
+                return@withContext dao.getAllProducts()
 
             } catch (exception: Exception) {
                 println(exception.message)

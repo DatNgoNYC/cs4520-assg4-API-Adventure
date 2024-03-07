@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 object RetrofitClient {
@@ -26,7 +27,7 @@ object RetrofitClient {
 }
 
 interface amazonApiService {
-    @GET("prod/?page={id}")
-    suspend fun getProductListByPage(pageNumber: Int): Response<List<Product>>
+    @GET("prod/")
+    suspend fun getProductListByPage(@Query("page") pageNumber: Int): Response<List<Product>>
 }
 
