@@ -15,5 +15,5 @@
 
     <fragment android:id="@+id/product_list_fragment"
         android:name="com.cs4520.assignment4.UI.ProductListFragment"
-        tools:layout=" "/>
+        tools:layout="@layout/product_list_fragment"/>
 </navigation>
