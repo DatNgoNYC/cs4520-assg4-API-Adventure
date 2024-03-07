@@ -18,13 +18,13 @@ object RetrofitClient {
     }
 
     object ProductsApiService {
-        val apiService: ApiService by lazy {
-            RetrofitClient.retrofit.create(ApiService::class.java)
+        val amazonApi: amazonApiService by lazy {
+            RetrofitClient.retrofit.create(amazonApiService::class.java)
         }
     }
 }
 
-interface ApiService {
+interface amazonApiService {
     @GET("prod/?page={id}")
     suspend fun getProductListByPage(pageNumber: Int): Call<List<Product>>
 }

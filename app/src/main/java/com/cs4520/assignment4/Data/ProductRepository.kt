@@ -11,7 +11,7 @@ class ProductRepository(private val dao: ProductDAO, private val apiService: Ret
     suspend fun getAllProducts(): List<Product> = withContext(Dispatchers.IO) {
         if (isOnline()) {
             try {
-
+                val products = apiService.amazonApi
             } catch (exception: Exception) {
                 // return dao.getAllProducts()
             }
