@@ -13,5 +13,5 @@ interface ProductDAO {
     fun insertAll(product: List<Product>)
 
     @Query("Select * FROM products")
-    fun getAllProducts(): LiveData<List<Product>>
+    fun getAllProducts(): List<Product>
 }
