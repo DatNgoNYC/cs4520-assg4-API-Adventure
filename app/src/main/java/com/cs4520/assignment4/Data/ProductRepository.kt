@@ -15,44 +15,30 @@ import kotlinx.coroutines.withContext
 
 //
 class ProductRepository(
-    private val context: Context,
     private val dao: ProductDAO,
     private val productsApiService: RetrofitClient.ProductsApiService
 ) {
     suspend fun getAllProducts(): LiveData<List<Product>> = withContext(Dispatchers.IO) {
-        if (isOnline(context)) {
-            try {
-                val apiCalls = listOf(
-                    async { productsApiService.amazonApi.getProductListByPage(1) },
-                    async { productsApiService.amazonApi.getProductListByPage(2) }
-                )
-                val results = awaitAll(*apiCalls.toTypedArray()).mapNotNull { it.body() }.flatten()
+        try {
+            val apiCalls = listOf(
+                async { productsApiService.amazonApi.getProductListByPage(1) },
+                async { productsApiService.amazonApi.getProductListByPage(2) }
+            )
+            val results = awaitAll(*apiCalls.toTypedArray()).mapNotNull { it.body() }.flatten()
 
-                if (results.isNotEmpty()) {
-                    dao.insertAll(results)
-                }
-
-                Log.d("ApiService", "the first page: ${results.get(0)}")
-
-                return@withContext dao.getAllProducts()
-
-            } catch (exception: Exception) {
-                println(exception.message)
+            if (results.isNotEmpty()) {
+                dao.insertAll(results)
             }
-        } else {
+
+            Log.d("ApiService", "the first page: ${results.get(0)}")
+
             return@withContext dao.getAllProducts()
+
+        } catch (exception: Exception) {
+            println(exception.message)
         }
+
 
         return@withContext dao.getAllProducts()
     }
-}
-
-fun isOnline(context: Context): Boolean {
-    val connectivityManager: ConnectivityManager =
-        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val network = connectivityManager.activeNetwork ?: return false
-    val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
-    return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
-
 }
