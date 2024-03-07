@@ -26,6 +26,6 @@ object RetrofitClient {
 
 interface amazonApiService {
     @GET("prod/?page={id}")
-    suspend fun getProductListByPage(pageNumber: Int): Call<List<Product>>
+    suspend fun getProductListByPage(pageNumber: Int): List<Product>
 }
 
