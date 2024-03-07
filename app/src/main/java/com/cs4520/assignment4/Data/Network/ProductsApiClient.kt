@@ -2,6 +2,7 @@ package com.cs4520.assignment4.Data.Network
 
 import com.cs4520.assignment4.Data.Entities.Product
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -26,6 +27,6 @@ object RetrofitClient {
 
 interface amazonApiService {
     @GET("prod/?page={id}")
-    suspend fun getProductListByPage(pageNumber: Int): List<Product>
+    suspend fun getProductListByPage(pageNumber: Int): Response<List<Product>>
 }
 
