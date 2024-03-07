@@ -24,7 +24,7 @@ class ProductRepository(
         val database = ProductDatabase.getDatabase(context)
         dao = database.productDao()
     }
-    suspend fun getAllProducts(): LiveData<List<Product>> = withContext(Dispatchers.IO) {
+    suspend fun getAllProducts(): List<Product> = withContext(Dispatchers.IO) {
         if (isOnline(context)) {
             try {
                 val apiCalls = listOf(
@@ -33,16 +33,16 @@ class ProductRepository(
                 )
                 val results = awaitAll(*apiCalls.toTypedArray()).mapNotNull { it.body() }.flatten()
 
+                Log.d("ApiService", "the first page: $results")
+
                 if (results.isNotEmpty()) {
                     dao.insertAll(results)
                 }
 
-                Log.d("ApiService", "the first page: ${results.get(0)}")
-
                 return@withContext dao.getAllProducts()
 
             } catch (exception: Exception) {
-                println(exception.message)
+                Log.e("ApiService", "${exception.message}")
             }
         } else {
             return@withContext dao.getAllProducts()

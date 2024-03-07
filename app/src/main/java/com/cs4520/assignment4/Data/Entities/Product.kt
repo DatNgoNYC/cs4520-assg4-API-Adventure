@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Product (
     @PrimaryKey val name: String,
     val type: String,
-    val expiryDate: String,
+    val expiryDate: String?,
     val price: String
 )
