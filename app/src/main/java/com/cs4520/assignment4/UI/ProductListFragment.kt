@@ -35,8 +35,8 @@ class ProductListFragment : Fragment() {
 
         viewModel.products.observe(viewLifecycleOwner, Observer { products ->
             // Here you can log the products to test your API call
-            Log.d("ApiService","Fetched products: $products")
-
+            Log.d("ApiService","plf.kgt - Fetched products: $products")
+            (binding.recyclerView.adapter as ProductAdapter).updateData(products)
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
