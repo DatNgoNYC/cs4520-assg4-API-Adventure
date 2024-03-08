@@ -11,6 +11,10 @@ import com.cs4520.assignment4.databinding.ProductListItemBinding
 
 class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
+    fun updateData(newData: List<Product>) {
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ProductListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductViewHolder(binding)
@@ -33,7 +37,7 @@ class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adap
                 val backgroundColor = when (product.type) {
                     "food" -> R.color.light_yellow
                     "equipment" -> R.color.light_red
-                    else -> com.google.android.material.R.color.test_color
+                    else -> 0
                 }
                 root.setBackgroundColor(ContextCompat.getColor(root.context, backgroundColor))
 
