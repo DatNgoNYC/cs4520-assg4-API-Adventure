@@ -3,4 +3,6 @@
     <string name="login_button_text">login</string>
     <string name="username_hint">username</string>
   <string name="password_hint">password</string>
+    <string name="product_image_content_description">product_image</string>
+    <string name="no_products_text">No products</string>
 </resources>
